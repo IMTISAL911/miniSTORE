@@ -16,6 +16,7 @@ const HomeScreen = ({ navigation }) => {
   const [products, setProducts] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [activeCategory, setActiveCatgory] = useState("");
 
   // Fetch API
   useEffect(() => {
@@ -39,6 +40,7 @@ const HomeScreen = ({ navigation }) => {
 
   // Category filter
   const filterCategory = (category) => {
+    setActiveCatgory(category);
     if (category === "all") {
       setFilteredData(products);
     } else {
@@ -71,17 +73,17 @@ const HomeScreen = ({ navigation }) => {
       {/* Buttons */}
       <View style={styles.buttonContainer}>
         <TouchableOpacity
-          style={styles.button}
+          style={[styles.button, activeCategory=== "all" && styles.activeButton]}
           onPress={() => filterCategory("all")}
         >
-          <Text style={styles.btnText}>ALL</Text>
+          <Text style={[styles.btnText, activeCategory ==="all" && styles.activeText]}>ALL</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
-          style={styles.button}
+          style={[styles.button, activeCategory=== "electronics" && styles.activeButton]}
           onPress={() => filterCategory("electronics")}
         >
-          <Text style={styles.btnText}>Electronics</Text>
+          <Text style={[styles.btnText, activeCategory==="electronics" && styles.activeText]}>Electronics</Text>
         </TouchableOpacity>
       </View>
 
@@ -138,13 +140,31 @@ const styles = StyleSheet.create({
     marginLeft: 18,
     marginTop: 10
   },
+  // button: {
+  //   backgroundColor: "#007BFF",
+  //   padding: 10,
+  //   borderRadius: 8
+  // },
+  // btnText: {
+  //   color: "white",
+  //   fontWeight: "bold"
+  // }
   button: {
-    backgroundColor: "#007BFF",
-    padding: 10,
-    borderRadius: 8
-  },
-  btnText: {
-    color: "white",
-    fontWeight: "bold"
-  }
+  backgroundColor: "#e0e0e0",   // default = disabled look
+  padding: 10,
+  borderRadius: 8
+},
+
+activeButton: {
+  backgroundColor: "#007BFF"    // active = blue
+},
+
+btnText: {
+  color: "black"
+},
+
+activeText: {
+  color: "white",
+  fontWeight: "bold"
+}
 });
