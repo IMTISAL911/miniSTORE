@@ -16,26 +16,36 @@ const ProductCart = ({ item, onPress }) => {
 };
 
 export default ProductCart;
-
 const styles = StyleSheet.create({
   card: {
+    width: "45%",          // ✅ FIX (2 cards per row)
     backgroundColor: "#fff",
-    margin: 10,
     padding: 10,
     borderRadius: 10,
-    elevation: 3
+    marginVertical: 8,
+    elevation: 3,
+    alignItems: "center",
+    marginRight:8,
   },
-  image: {
-    height: 100,
-    resizeMode: "contain"
-  },
+
   title: {
     color: "black",
-    marginTop: 5
+    fontWeight: "bold",
+    textAlign: "center",
+    marginBottom: 5
   },
+
+  image: {
+    width: "100%",
+    height: 100,
+    resizeMode: "contain",
+    marginVertical: 5
+  },
+
   price: {
     color: "#007BFF",
     fontWeight: "bold",
     marginTop: 5
   }
 });
+// });

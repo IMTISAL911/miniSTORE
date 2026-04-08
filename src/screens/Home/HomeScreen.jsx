@@ -1,81 +1,3 @@
-// import React from "react";
-// import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
-
-
-
-
-
-// const Home = () =>{
-//     return(
-//         <View style={styles.containner}>
-//             <Text style={styles.title}>Product</Text>
-//             <View>
-//                 <TextInput  
-//                 placeholder="search"
-//                 placeholderTextColor="gray"
-//                 style={styles.input}          
-//                 />
-//                 <View style={styles.butoncontainer}> 
-//                     <TouchableOpacity style={styles.buton}>
-//                         <Text style={styles.btntext}>ALL</Text>
-//                     </TouchableOpacity>
-
-//                     <TouchableOpacity style={styles.buton}>
-//                         <Text style={styles.btntext}>Electronics</Text>
-//                     </TouchableOpacity>
-//                 </View>
-//             </View>
-//         </View>
-//     )
-// }
-
-// const styles = StyleSheet.create({
-//     containner:{
-//         flex:1
-//     },
-//     title:{
-       
-//         color:"black",
-//         fontSize:25,
-//         fontWeight:"bold",
-//         paddingHorizontal:"5%",
-//         marginTop:30,
-//     },
-//     input:{
-//         width:"90%",
-//         borderColor:"gray",
-//         borderWidth:1,
-//         paddingHorizontal:"10%",
-//         marginLeft:18,
-//         marginTop:10,
-//         borderRadius:10,
-//         backgroundColor: "#e0e0e0",
-//         color:"gray",   
-    
-//     },
-//     butoncontainer:{
-//         flexDirection:"row",
-//         gap:"10%",
-//         marginLeft:"5%",
-//         marginTop:"5%"
-
-//     },
-//     buton:{
-//         backgroundColor: "#007BFF",
-//         padding:10,
-//         alignItems:"center",
-//         borderRadius:8
-//     },
-//     btntext:{
-//         color:"white",
-//         fontWeight:"bold"
-//     }
-// })
-// export default Home
-
-
-
-
 import React, { useEffect, useState } from "react";
 import {
   StyleSheet,
@@ -87,8 +9,8 @@ import {
 } from "react-native";
 
 import { getProducts } from "../../services/api";
-import ProductCart from "../../components/product/ProductCart.jsx";
-import Loader from "../../components/Common/Loader.jsx";
+import ProductCart from "../../components/product/ProductCart";
+import Loader from "../../components/Common/Loader";
 
 const HomeScreen = ({ navigation }) => {
   const [products, setProducts] = useState([]);
@@ -167,6 +89,17 @@ const HomeScreen = ({ navigation }) => {
       <FlatList
         data={filteredData}
         keyExtractor={(item) => item.id.toString()}
+        numColumns={2} // ✅ 2 cards in one row
+        // contentContainerStyle={{ paddingBottom: 20 }}
+        columnWrapperStyle={{
+    justifyContent: "space-between", // space between 2 cards
+    paddingHorizontal: 10
+  }}
+
+  contentContainerStyle={{
+    paddingBottom: 20,
+    paddingTop: 10
+  }}
         renderItem={({ item }) => (
           <ProductCart item={item} onPress={goToDetail} />
         )}
