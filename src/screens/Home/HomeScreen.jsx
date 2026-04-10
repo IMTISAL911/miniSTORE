@@ -11,6 +11,7 @@ import {
 import { getProducts } from "../../services/api";
 import ProductCart from "../../components/product/ProductCart";
 import Loader from "../../components/Common/Loader";
+import ProductDetail from "../../screens/Product/ProductDeatails"
 
 const HomeScreen = ({ navigation }) => {
   const [products, setProducts] = useState([]);
