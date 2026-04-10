@@ -5,7 +5,7 @@ import { Text, View } from "react-native";
 
 
 
-const ProDetails = () =>{
+const ProductDetail = () =>{
     return(
         <View>
             <Text>productDetails</Text>
@@ -14,4 +14,4 @@ const ProDetails = () =>{
 }
 
 
-export default ProDetails
+export default ProductDetail
