@@ -17,7 +17,7 @@ const HomeScreen = ({ navigation }) => {
   const [products, setProducts] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [activeCategory, setActiveCatgory] = useState("");
+  const [activeCategory, setActiveCatgory] = useState("all");
 
   // Fetch API
   useEffect(() => {
@@ -28,6 +28,7 @@ const HomeScreen = ({ navigation }) => {
     const data = await getProducts();
     setProducts(data);
     setFilteredData(data);
+    setActiveCatgory("all")
     setLoading(false);
   };
 
