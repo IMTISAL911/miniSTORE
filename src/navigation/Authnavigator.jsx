@@ -14,7 +14,12 @@ const Authnavigator =() =>{
           <Stack.Screen  name="Login" component={LoginScreen}/>
 
           <Stack.Screen  name="Home" component={HomeScreen}/>
-          <Stack.Screen name="ProductDetail" component={ProductDetail} />
+
+          <Stack.Screen name="ProductDetail" component={ProductDetail}  
+          options={{title:"Product Details", }}
+          
+          
+          />
         </Stack.Navigator>
     )
 }
