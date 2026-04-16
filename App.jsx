@@ -1,11 +1,14 @@
 import React from "react";
-import { Text, View } from "react-native";
-import Appnavigator from "../miniSTORE/src/navigation/Appnavigator"
+import { Provider } from "react-redux";
+import { store } from "./src/redux/store";
+import AppNavigator from "../miniSTORE/src/navigation/Appnavigator";
 
+const App = () => {
+  return (
+    <Provider store={store}>
+      <AppNavigator />
+    </Provider>
+  );
+};
 
-const App = () =>{
-  return <Appnavigator />
-}
-
-
-export default App
+export default App;
