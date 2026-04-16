@@ -1,12 +1,15 @@
 import React from "react";
 import { Provider } from "react-redux";
-import { store } from "./src/redux/store";
-import AppNavigator from "../miniSTORE/src/navigation/Appnavigator";
+import { store, persistor } from "./src/redux/store";
+import { PersistGate } from "redux-persist/integration/react";
+import AppNavigator from "../miniSTORE/src/navigation/Appnavigator"; // ✅ FIX PATH
 
 const App = () => {
   return (
     <Provider store={store}>
-      <AppNavigator />
+      <PersistGate loading={null} persistor={persistor}>
+        <AppNavigator />
+      </PersistGate>
     </Provider>
   );
 };
