@@ -33,6 +33,14 @@ const productSlice = createSlice({
         );
       }
     },
+
+    setSelectedProduct: (state, action) => {
+  state.selectedProduct = action.payload;
+},
+
+clearSelectedProduct: (state) => {
+  state.selectedProduct = null;
+},
   },
 
   extraReducers: builder => {
@@ -51,5 +59,10 @@ const productSlice = createSlice({
   },
 });
 
-export const { searchProduct, filterCategory } = productSlice.actions;
+export const {
+  searchProduct,
+  filterCategory,
+  setSelectedProduct,
+  clearSelectedProduct
+} = productSlice.actions;
 export default productSlice.reducer;

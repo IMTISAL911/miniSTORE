@@ -1,3 +1,5 @@
+
+
 import React, { useState } from "react";
 import {
   View,
@@ -6,8 +8,14 @@ import {
   StyleSheet,
   TouchableOpacity
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { useDispatch } from "react-redux";
+import { clearSelectedProduct } from "../../redux/slices/productSlice";
 
 const ProductDetail = ({ route }) => {
+  const navigation = useNavigation();
+  const dispatch = useDispatch();
+
   const { product } = route.params;
 
   const [quantity, setQuantity] = useState(1);
@@ -26,6 +34,29 @@ const ProductDetail = ({ route }) => {
 
   return (
     <View style={styles.container}>
+
+      {/* 🔥 HEADER (NEW) */}
+      <View style={styles.header}>
+        
+        {/* ⬅️ BACK */}
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Text style={styles.icon}>⬅️</Text>
+        </TouchableOpacity>
+
+        <Text style={styles.headerTitle}>Product Detail</Text>
+
+        {/* ❌ CANCEL */}
+        <TouchableOpacity
+          onPress={() => {
+            dispatch(clearSelectedProduct()); // remove item
+            navigation.navigate("Home");      // go home
+          }}
+        >
+          <Text style={styles.cancel}>Cancel</Text>
+        </TouchableOpacity>
+
+      </View>
+
       {/* Image */}
       <Image source={{ uri: product.image }} style={styles.image} />
 
@@ -55,17 +86,38 @@ const ProductDetail = ({ route }) => {
       <TouchableOpacity style={styles.checkoutBtn}>
         <Text style={styles.checkoutText}>Checkout</Text>
       </TouchableOpacity>
+
     </View>
   );
 };
-
-export default ProductDetail;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
     backgroundColor: "#fff"
+  },
+
+  header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 10
+  },
+
+  icon: {
+    fontSize: 22
+  },
+
+  headerTitle: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "black"
+  },
+
+  cancel: {
+    color: "red",
+    fontWeight: "bold"
   },
 
   image: {
@@ -131,3 +183,4 @@ const styles = StyleSheet.create({
     fontSize: 16
   }
 });
+export default ProductDetail;
